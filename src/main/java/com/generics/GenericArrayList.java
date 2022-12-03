@@ -1,6 +1,7 @@
 package com.generics;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class GenericArrayList<T> implements IList<T> {
 
@@ -28,15 +29,10 @@ public class GenericArrayList<T> implements IList<T> {
     @Override
     public void add(T elem) {
 
-        growArrayIfNeeded(); //I've farmed this out to a private "helper" method
+        growArrayIfNeeded(); // as per private "helper" method
         buffer[nextFreeLoc++] = elem;
 
     }
-
-//    @Override
-//    public void add(int index, T element) {
-//
-//    }
 
     /** Via Dermot
      * Add an element to a specified index. Make sure to avoid adding beyond the end of the
@@ -46,8 +42,9 @@ public class GenericArrayList<T> implements IList<T> {
      */
     public void add(int index, T elem)
     {
-        // if it's valid -> maybe better wayt to check
+        // if it's valid -> maybe better way to check
         if (index <= nextFreeLoc)
+//        if (index > nextFreeLoc || index < 0)
         {
             //Make sure that we "grow" the array if needed.
             growArrayIfNeeded();
@@ -65,15 +62,39 @@ public class GenericArrayList<T> implements IList<T> {
             nextFreeLoc++;
         }
     }
-
+    /* here are setting/replacing element at the given i (index) position
+    * with another given element -> return prevElem formerly in the i position */
     @Override
-    public T set(int index, T element) {
-        return null;
+    public T set(int index, T elem) {
+        if (index <= nextFreeLoc) {
+            for (int i=0; i <nextFreeLoc; i++) {
+                T prevElem = buffer[i]; // assign prevElem as buf index
+                buffer[i] = elem;
+
+                return prevElem; // T
+            }
+        }
+        else {
+            return null; // needed?
+        }
+    return null; // needed?
     }
 
-    @Override
-    public T get(int index) {
-        return null;
+
+
+    /** Retrieve an element from 'i' position (index) in the list
+     *
+     * @param index the location to be return
+     * @return the data at buffer[index]
+     */
+    public T get(int index)
+    {
+        if(index >= nextFreeLoc)
+        {
+            return null;
+        }
+
+        return buffer[index];
     }
 
     /**
@@ -82,6 +103,7 @@ public class GenericArrayList<T> implements IList<T> {
      */
     @Override
     public int size() {
+//        System.out.println(buffer.length);
         return nextFreeLoc;
     }
 
@@ -97,15 +119,19 @@ public class GenericArrayList<T> implements IList<T> {
         //if it's valid
         if (index <= nextFreeLoc)
         {
+            T removedElem = buffer[index];
             //Close the gap - move elements 1 position to the left
             for( int i = index; i<nextFreeLoc; i++)
             {
+                this.growArrayIfNeeded(); // if needed
                 buffer[i] = buffer[i+1];
             }
 
-            nextFreeLoc--;
+        nextFreeLoc--;
+        return removedElem;
         }
-        return (T) buffer; // casting but should return some other (removed) variable?
+//        return (T) buffer; // casting but should return some other (removed) variable?
+    return null;
     }
 
     @Override
@@ -129,7 +155,7 @@ public class GenericArrayList<T> implements IList<T> {
 
             }
         }
-        return matchFound;
+        return matchFound; // false
     }
 
     /**
@@ -141,26 +167,38 @@ public class GenericArrayList<T> implements IList<T> {
     {
         if(nextFreeLoc == currentCapacity){
             //Allocate double the space - that will keep us going for a while
-
             T[] tempArr = (T[]) new Object[buffer.length * 2];
 
 //            String[] tempArr = new String[buffer.length * 2];
-            currentCapacity *= 2;
+            currentCapacity *= 2; // double
             //copy from the old space into the new
             for (int i = 0; i < buffer.length; i++){
                     tempArr[i] = buffer[i];
             }
             //Now, update so that our managed array points at the newly created array
-            buffer = (T[]) tempArr;
+            buffer = tempArr; //(T[]) no need to cast
         }
     }
 
+    /**
+     *
+     * @return whether the list is empty or not
+     */
     @Override
     public boolean isEmpty() {
+
         return (nextFreeLoc == 0);
     }
 
-
+    /**
+     *
+     * @return the size (i.e. the number of elements stored) in the list
+     */
+//    public int size()
+//    {
+//        //System.out.println(buffer.length);
+//        return nextFreeLoc;
+//    }
 
 
     @Override
@@ -171,12 +209,13 @@ public class GenericArrayList<T> implements IList<T> {
                 matchFound = true;
             }
         }
-        return matchFound;
+        return matchFound; // false
     }
 
+    /* returning correct sequencing of list iteration for elements */
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new GenericArrayListIteratorCheck(); // add class
     }
 
     @Override
@@ -197,5 +236,31 @@ public class GenericArrayList<T> implements IList<T> {
      "buffer=" + Arrays.toString(buffer) +
      '}';
      }*/
+
+    /* new for a Generic iterator, as we want to return a true bool
+    * to check if .next returns an element */
+    class GenericArrayListIteratorCheck implements Iterator<T> {
+
+        int pointer = 0; // elem being checked
+
+        /* returns True if there is a free location
+        * otherwise false if not */
+        @Override
+        public boolean hasNext() {
+            return pointer < nextFreeLoc;
+        }
+
+        /* we simply iterate over and return element next in list (if True)
+        * NoSuchElemException thrown if we have reached the limit*/
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException(); // false, therefore throws
+            }
+            return buffer[pointer++];
+        }
+    }
+
+
     }
 
