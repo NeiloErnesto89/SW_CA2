@@ -242,14 +242,24 @@ public class GenericArrayList<T> implements IList<T> {
     * to check if .next returns an element */
     class GenericArrayListIterator implements Iterator<T> {
 
-        int pointer = 0; // elem being checked
+        private int cursor = 0; // elem being checked
+
+        /**
+         * Returns {@code true} if the iteration has more elements.
+         * (In other words, returns {@code true} if {@link #next} would
+         * return an element rather than throwing an exception.)
+         *
+         * @return {@code true} if the iteration has more elements
+         */
+
 
         /* returns True if there is a free location
         * otherwise false if not */
         @Override
         public boolean hasNext() {
-            return pointer < nextFreeLoc;
+            return cursor < nextFreeLoc;
         }
+
 
         /* we simply iterate over and return element next in list (if True)
         * NoSuchElemException thrown if we have reached the limit*/
@@ -258,8 +268,11 @@ public class GenericArrayList<T> implements IList<T> {
             if (!hasNext()) {
                 throw new NoSuchElementException(); // false, therefore throws
             }
-            return buffer[pointer++]; // incremented pointer as buf index
+            return buffer[cursor++]; // incremented pointer as buf index
         }
+
+        //You do not have to provide functionality for the remove() method
+        //We already have (non-iterator) mechanism for removing elements
     }
 
 

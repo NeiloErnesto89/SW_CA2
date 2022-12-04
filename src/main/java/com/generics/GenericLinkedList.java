@@ -241,12 +241,6 @@ public class GenericLinkedList<T> implements IList<T> {
                 '}';
     }
 
-    /* Returns an iterator over the elements in this list in proper sequence.*/
-    @Override
-    public Iterator<T> iterator() {
-
-        return new GenericLinkedListIterator();
-    }
 
 
     /* Linked list Node via Dermot notes */
@@ -287,7 +281,15 @@ public class GenericLinkedList<T> implements IList<T> {
         }
     }
 
-//    https://stackoverflow.com/questions/40322092/using-generic-in-linkedlist-that-implements-iterable
+    /* Returns an iterator over the elements in this list in proper sequence.*/
+    @Override
+    public Iterator<T> iterator() {
+
+        return new GenericLinkedListIterator();
+    }
+
+
+    //   some info:  https://stackoverflow.com/questions/40322092/using-generic-in-linkedlist-that-implements-iterable
     class GenericLinkedListIterator implements Iterator<T> {
 
         Node curr = head; // current head node

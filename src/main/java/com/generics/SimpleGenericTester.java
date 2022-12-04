@@ -16,26 +16,37 @@ public class SimpleGenericTester {
         System.out.println(shoppingList);
 
         ArrayList<Integer> moneyList = new ArrayList<>();
-        moneyList.add(1);
-        moneyList.add(2);
-        moneyList.add(3);
+        moneyList.add(1); moneyList.add(2); moneyList.add(3);
         System.out.println(moneyList);
 
 //        LinkedList aaList = new LinkedList();
-//        aaList.addToStart(20);
-//        aaList.addToStart(5);
-//        aaList.addToStart(15);
+//        aaList.addToStart(20); aaList.addToStart(5); aaList.addToStart(15);
 //        aaList.addToStart(10);
 //        aaList.printList();
 
 
-        GenericArrayList<Integer> aList = new GenericArrayList<>();
-        aList.add(15);aList.add(22);aList.add(35);
-        printArrayList("aList", aList );
+//        GenericArrayList<Integer> ga1List = new GenericArrayList<>();
+//        ga1List.add(15);ga1List.add(22);ga1List.add(35);
+////        System.out.println(ga1List.get(1));
+////        System.out.println(ga1List.remove(1));
+//        printArrayList("ga1List", ga1List );
 
-        GenericArrayList<String> bList = new GenericArrayList<>();
-        bList.add("Pierre");bList.add("Franck");bList.add("Thierry");
-        printArrayList("bList", bList ); // working for Generic Array Lists
+        /* generic array list person object tester */
+        GenericArrayList<Person> myPersonList = new GenericArrayList<>();
+        myPersonList.add(new Person(35, "Smith", "Niall"));
+        myPersonList.add(new Person(24, "Mbappe", "Killian"));
+        myPersonList.add(new Person(42, "Given", "Shay"));
+        System.out.println(myPersonList.size()); // 3
+        System.out.println(myPersonList.remove(2)); // returns person removed object
+        System.out.println(myPersonList.get(1)); // returns obj @ index[1]
+        System.out.println(myPersonList.toString());
+
+
+        GenericArrayList<String> ga2List = new GenericArrayList<>();
+        ga2List.add("Pierre");ga2List.add("Franck");ga2List.add("Thierry"); ga2List.add("Leroy");
+        System.out.println(ga2List.contains("Pierre")); // true
+        System.out.println(ga2List.remove(1)); // Franck & removed
+        printArrayList("ga2List", ga2List ); // working for Generic Array Lists
 
         // LL
         GenericLinkedList<String> llList = new GenericLinkedList<>();
@@ -47,10 +58,7 @@ public class SimpleGenericTester {
         llNumsList.addToStart(100);
 //        llNumsList.addToStart(200);
         llNumsList.addToStart(300);
-//        llNumsList.addToStart(400);
-        llNumsList.add(400);
-        llNumsList.add(450);
-        llNumsList.add(500);
+        llNumsList.add(400); llNumsList.add(450); llNumsList.add(500);
         llNumsList.remove(2); // remove 450
         System.out.println(llNumsList.toString());
         System.out.println(llNumsList.get(2));
