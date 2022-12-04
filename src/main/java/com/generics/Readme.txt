@@ -7,7 +7,7 @@ Student Name: Neil Smyth
 Student ID: L00177606
 
 List of known bugs and/or omissions (leave blank if you don't know of any):
-Not sure, I didn't use commenting as much as I would have liked in the Junit tests but it seems as if everything is working
+Not sure, I didn't use commenting as much as I would have liked in the Junit tests but it seems as if everything is working.
 
 Link to github repo (optional): https://github.com/NeiloErnesto89/SW_CA2
 
