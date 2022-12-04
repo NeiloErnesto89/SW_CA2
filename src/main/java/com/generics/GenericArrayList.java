@@ -34,6 +34,7 @@ public class GenericArrayList<T> implements IList<T> {
 
     }
 
+
     /** Via Dermot
      * Add an element to a specified index. Make sure to avoid adding beyond the end of the
      * array (no gaps or bufferOverflows).
@@ -219,17 +220,29 @@ public class GenericArrayList<T> implements IList<T> {
         return new GenericArrayListIterator(); // add class
     }
 
-    @Override
-    public String toString()
-    {
-        String data = "";
-        for(int i = 0; i < nextFreeLoc; i++)
-        {
-            data += " " +buffer[i] + ",";
-        }
+//    @Override
+//    public String toString()
+//    {
+//        String data = "";
+//        for(int i = 0; i < nextFreeLoc; i++)
+//        {
+//            data += " " +buffer[i] + ",";
+//        }
+//
+//        return "MyStringArrayList[" + data + " ]";
+//    }
 
-        return "MyStringArrayList[" + data + " ]";
+    @Override
+    public String toString() {
+        StringBuilder data = new StringBuilder(); //adding stringbuilder for unit tests
+
+        for (int i = 0; i < nextFreeLoc; i++) {
+
+            data.append(buffer[i]).append(",");
+        }
+        return data.toString();
     }
+
      /* //This is IntelliJ's version of toString()
      @Override
      public String toString() {

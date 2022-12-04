@@ -30,6 +30,33 @@ Mainly use pom.xml file (Maven) for adding dependencies
 public abstract class Shape
 ```
 
+Below is a snippet of working Unit Test code
+```java
+class GenericArrayListTest { 
+
+@Test
+    void add() {
+    /* like string object but they can be modifed */
+    StringBuilder stringExpected = new StringBuilder();
+    StringBuilder integerExpected = new StringBuilder();
+
+    /* simply add 10 str, 10 ints to GenericArrayList objs and checking against
+     * expected result via StringBuilder */
+    for (int i = 0; i < 10; i++) {
+        stringGenericArrayList.add("A");
+        stringExpected.append("A,");
+
+        integerGenericArrayList.add(i);
+        integerExpected.append(i).append(","); //need to append comma
+    }
+
+    assertEquals(stringExpected.toString(), stringGenericArrayList.toString());
+    assertEquals(integerExpected.toString(), integerGenericArrayList.toString());
+
+}
+```
+
+
 ## Potential Improvements
 
 
