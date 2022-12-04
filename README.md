@@ -56,6 +56,14 @@ class GenericArrayListTest {
 }
 ```
 
+Here are the Junit test results over the five classes I tested:
+1. GenericArrayListTestResults
+![GenericArrayListTestResults.png](GenericArrayListTestResults.png)
+
+
+2. GenericLinkedListTestResults
+![GenericLinkedListTestResults.png](GenericLinkedListTestResults.png)
+
 
 ## Potential Improvements
 
