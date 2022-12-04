@@ -16,6 +16,15 @@ should implement the following interface
 * Requirement 2: Requirement 2: GenericStack and GenericQueue Classes:
 Classes to implement are the IStack and IQueue interfaces given
 
+* Use Maven in tandem with Junit as a build management tool to help us 
+* undertake our testing. It gives us our structure
+
+SRC folder subdivided into main & test (test acting as associated java folder, mirroring the java folder)
+The goal of unit testing to test individual units/blocks of code (e.g. methods) within a class.
+The idea is to commit to testing early and consistently. Rerun unit tests (regression) to check for potential knock on effects.
+
+Mainly use pom.xml file (Maven) for adding dependencies 
+
 1. Abstraction Example
 ```java
 public abstract class Shape
