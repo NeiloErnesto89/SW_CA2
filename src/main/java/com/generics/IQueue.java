@@ -1,7 +1,7 @@
 package com.generics;
 
 /* Queues are FIFO (first in, first out) i.e. the first element added to the queue
-* eill also be the first element to be removed*/
+* will also be the first element to be removed */
 
 public interface IQueue<T> {
     /**

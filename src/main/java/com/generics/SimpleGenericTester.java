@@ -60,9 +60,11 @@ public class SimpleGenericTester {
 
 
         GenericStack<Integer> stackList = new GenericStack<>();
+        System.out.println(stackList.empty()); // bool -> true
         stackList.push(30);
         stackList.push(20);
         stackList.push(10);
+        System.out.println(stackList.empty()); // bool -> false after pushing
         stackList.push(5);
         System.out.println("peeking: "+ stackList.peek()); // 5
         System.out.println("popped elem: "+ stackList.pop()); //5
@@ -71,6 +73,17 @@ public class SimpleGenericTester {
         System.out.println(stackList.toString()); //[30, 20, 10]
 
 //        printList("stackList", stackList);
+
+        GenericQueue<String> queueList = new GenericQueue<>();
+        System.out.println(queueList.empty());
+        queueList.enqueue("Hello");
+        queueList.enqueue("There");
+        System.out.println(queueList.empty());
+        queueList.enqueue("Harold");
+        queueList.enqueue("How are you?");
+        System.out.println(queueList.first()); // returns current first item 'Hello'
+        System.out.println(queueList.dequeue()); // removes first item in Q i.e. 'Hello'
+        System.out.println(queueList.toString());
 
     }
 

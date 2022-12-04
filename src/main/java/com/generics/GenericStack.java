@@ -1,18 +1,19 @@
 package com.generics;
 
 import java.util.EmptyStackException;
-import java.util.Iterator;
+//import java.util.Iterator;
 
 /*  stack backed by 'default' generic arraylist. LIFO data structure, so we focus on the 'end' (last in)
 *  e.g. web browser <- back button 'pops' back. O(1) operation  */
 
-public class GenericStack<T> implements IStack<T>, Iterable<T> { //
+public class GenericStack<T> implements IStack<T> { //, Iterable<T>
 
     private IList<T> stackData; //via requirement notes
 //    private int top;
 //    private int size;
 
-    /* default constructor */
+    /* default constructor ->  Backed by a GenericArrayList
+    * (provide this capability via constructors) */
     public GenericStack() {
         stackData = new GenericArrayList<>(); //new genericAL obj
     }
@@ -21,7 +22,8 @@ public class GenericStack<T> implements IStack<T>, Iterable<T> { //
         stackData = data; // via generic IList
     }
 
-    /* pushes an item onto the top of the curr stack*/
+    /* pushes an item onto the top of this stack
+    * uses underlining IList method implementations (add) */
     @Override
     public void push(T element) {
 
@@ -29,7 +31,7 @@ public class GenericStack<T> implements IStack<T>, Iterable<T> { //
 
     }
 
-    /* Via Stack Notes: pop() removes and returns the top element of the stack. An
+    /* Via Stack Notes: pop() removes and returns object at the top  of the stack. An
      * ‘EmptyStackException’ exception is thrown if we call pop() when the
      * invoking stack is empty.*/
     @Override
@@ -75,49 +77,50 @@ public class GenericStack<T> implements IStack<T>, Iterable<T> { //
     }
 
     /* Returns an iterator over the elements in this list in proper sequence.*/
-    @Override
-    public Iterator<T> iterator() {
-        return new GenericStackIterator<>(stackData); //pass in stackData
-    }
-
-    /* Iterator class logic */
-    public class GenericStackIterator<T> implements Iterator<T> {
-
-        IList<T> data;
-        int index = 0; // checking index
-
-        /* default constructor */
-        public GenericStackIterator(IList<T> data) {
-            this.data = data;
-        }
-
-//        @Override
-//        public Iterator<T> iterator() {
-//            return null;
+//    @Override
+//    public Iterator<T> iterator() {
+//        return new GenericStackIterator<>(stackData); //pass in stackData
+//    }
+//
+//    /* Iterator class logic */
+//    public class GenericStackIterator<T> implements Iterator<T> {
+//
+//        IList<T> data;
+//        int index = 0; // checking index
+//
+//        /* default constructor */
+//        public GenericStackIterator(IList<T> data) {
+//            this.data = data;
 //        }
-
-        /* returns true if data has elems, else false*/
-        @Override
-        public boolean hasNext() {
-            return data.size() > index; // must be greater than index
-        }
-
-        /* returns next elem in iterable - acts as loop */
-        @Override
-        public T next() {
-            if (hasNext()) {
-                return data.get(index++); // increment to get next elem via index
-            } else {
-                /* otherwise, throw index out of bounds exception */
-                throw new IndexOutOfBoundsException();
-            }
-        }
-
-    }
-}
-        //        public Iterator<T> iterator(data)
+//
+////        @Override
+////        public Iterator<T> iterator() {
+////            return null;
+////        }
+//
+//        /* returns true if data has elems, else false*/
+//        @Override
+//        public boolean hasNext() {
+//            return data.size() > index; // must be greater than index
+//        }
+//
+//        /* returns next elem in iterable - acts as loop */
+//        @Override
+//        public T next() {
+//            if (hasNext()) {
+//                return data.get(index++); // increment to get next elem via index
+//            } else {
+//                /* otherwise, throw index out of bounds exception */
+//                throw new IndexOutOfBoundsException();
+//            }
+//        }
+    //        public Iterator<T> iterator(data)
 //        { return new ReverseArrayIterator(); }
 //        private class ReverseArrayIterator implements Iterator<T>
 //        {
+//
+//    }
+}
+
 
 
