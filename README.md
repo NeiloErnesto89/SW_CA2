@@ -22,6 +22,8 @@ test -<code>/src/test/java/com/generics/</code>.
 The goal of unit testing to test individual units/blocks of code (e.g. methods) within a class.
 The idea is to commit to testing early and consistently. Rerun unit tests are known as 
 regression to check for potential knock on effects and mainly, we use pom.xml file (Maven) for adding dependencies.
+I also heavily used my own 'SimpleGenericTester' class prior to incorporating the Junit classes,
+so a lot of initial testing was done here. 
 
 #### CA2 Requirements 
 
