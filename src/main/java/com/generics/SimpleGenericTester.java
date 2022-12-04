@@ -70,6 +70,8 @@ public class SimpleGenericTester {
 //        printList("stackList", stackList);
         System.out.println(stackList.toString()); //[30, 20, 10]
 
+//        printList("stackList", stackList);
+
     }
 
     private static <T> void printArrayList(String listName, GenericArrayList<T> listToPrint) {
