@@ -234,12 +234,24 @@ public class GenericLinkedList<T> implements IList<T> {
     @Override
     public String toString() {
         Node curr = head;
-        return "GenericLinkedList{" +
-                "head=" + curr.data +
-                ", tail=" + tail.data +
-                ", count=" + count +
-                '}';
+        StringBuilder stringNew = new StringBuilder();
+        while (curr!=null) {
+            stringNew.append(curr.data).append(",");
+            curr = curr.next;
+        }
+        return stringNew.toString(); //taking into account the
     }
+
+//    @Override
+//    public String toString() {
+//    Node curr = head;
+//    return "GenericLinkedList{" +
+//            "head=" + curr.data +
+//            ", tail=" + tail.data +
+//            ", count=" + count +
+//            '}';
+//
+//    }
 
 
 

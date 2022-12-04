@@ -44,16 +44,21 @@ class GenericArrayListTest {
 
     @Test
     void testAdd() {
+
         stringGenericArrayList.add("try");
         stringGenericArrayList.add("to");
         stringGenericArrayList.add(2, "tester");
         assertEquals("try,to,tester,", stringGenericArrayList.toString());
-
-
+        assertThrows(IndexOutOfBoundsException.class, () -> stringGenericArrayList.add(4, "again"));
     }
 
     @Test
     void set() {
+        stringGenericArrayList.add("one");
+        assertEquals("one", stringGenericArrayList.set(0, "two"));
+        assertEquals("two,", stringGenericArrayList.toString()); // true (don't forget comma)
+        assertThrows(IndexOutOfBoundsException.class, () -> stringGenericArrayList.set(2, "Index can not be out of Bounds"));
+
     }
 
     @Test

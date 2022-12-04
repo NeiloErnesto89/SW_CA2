@@ -43,10 +43,10 @@ public class GenericArrayList<T> implements IList<T> {
      */
     public void add(int index, T elem)
     {
-        // if it's valid -> maybe better way to check
-        if (index <= nextFreeLoc)
-//        if (index > nextFreeLoc || index < 0)
-        {
+        // updated for unit testers -> need throw
+        if (index > nextFreeLoc || index < 0) {
+            throw new IndexOutOfBoundsException("Index can not be out of Bounds");
+        }
             //Make sure that we "grow" the array if needed.
             growArrayIfNeeded();
 
@@ -62,23 +62,23 @@ public class GenericArrayList<T> implements IList<T> {
             //Obviously, we've added an extra element so we must update to reflect this
             nextFreeLoc++;
         }
-    }
+
     /* here are setting/replacing element at the given i (index) position
     * with another given element -> return prevElem formerly in the i position */
     @Override
     public T set(int index, T elem) {
-        if (index <= nextFreeLoc) {
-            for (int i=0; i <nextFreeLoc; i++) {
-                T prevElem = buffer[i]; // assign prevElem as buf index
-                buffer[i] = elem;
+        if (index >= nextFreeLoc || index < 0) {
+            throw new IndexOutOfBoundsException("Index can not be out of Bounds");
+        }
 
-                return prevElem; // T
-            }
+        for (int i=0; i <nextFreeLoc; i++) {
+            T prevElem = buffer[i]; // assign prevElem as buf index
+            buffer[i] = elem;
+
+            return prevElem; // T
         }
-        else {
-            return null; // needed?
-        }
-    return null; // needed?
+
+        return null; // needed?
     }
 
 
@@ -90,9 +90,9 @@ public class GenericArrayList<T> implements IList<T> {
      */
     public T get(int index)
     {
-        if(index >= nextFreeLoc)
-        {
-            return null;
+        /* updated for unit test */
+        if (index >= nextFreeLoc || index < 0) {
+            throw new IndexOutOfBoundsException("Index can not be out of Bounds");
         }
 
         return buffer[index];
@@ -118,22 +118,22 @@ public class GenericArrayList<T> implements IList<T> {
     public T remove(int index) {
         /* here we remove element via index */
         //if it's valid
-        if (index <= nextFreeLoc)
+        if (index >= nextFreeLoc || index < 0) {
+            throw new IndexOutOfBoundsException("Index can not be out of Bounds");
+        }
+        T removedElem = buffer[index];
+        //Close the gap - move elements 1 position to the left
+        for( int i = index; i<nextFreeLoc; i++)
         {
-            T removedElem = buffer[index];
-            //Close the gap - move elements 1 position to the left
-            for( int i = index; i<nextFreeLoc; i++)
-            {
-                this.growArrayIfNeeded(); // if needed
-                buffer[i] = buffer[i+1];
-            }
+            this.growArrayIfNeeded(); // if needed
+            buffer[i] = buffer[i+1];
+        }
 
         nextFreeLoc--;
-        return removedElem;
+        return removedElem; //        return (T) buffer; // casting but should return some other (removed) variable?
         }
-//        return (T) buffer; // casting but should return some other (removed) variable?
-    return null;
-    }
+
+
 
     @Override
     public boolean remove(T elem) {
