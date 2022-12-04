@@ -70,12 +70,22 @@ public class GenericStack<T> implements IStack<T>, Iterable<T> { //
         return stackData.size() == 0; // True if empty
     }
 
+    /* need to update override toString to ensure unit tests work*/
+
     @Override
     public String toString() {
-        return "GenericStack{" +
-                "stackData=" + stackData +
-                '}';
+        StringBuilder string = new StringBuilder();
+        for (int i = 0; i < stackData.size(); i++) {
+            string.append(stackData.get(i)).append(","); // append to SB i + append comma
+        }
+        return string.toString();
     }
+//    @Override
+//    public String toString() {
+//        return "GenericStack{" +
+//                "stackData=" + stackData +
+//                '}';
+//    }
 
     /* Returns an iterator over the elements in this list in proper sequence.*/
     @Override
