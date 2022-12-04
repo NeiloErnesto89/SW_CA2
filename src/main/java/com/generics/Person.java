@@ -1,6 +1,6 @@
 package com.generics;
 
-/* person tester class*/
+/* person tester class - code via Dermot course notes*/
 
 public class Person implements Comparable<Person> {
     private String firstname;
