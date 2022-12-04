@@ -3,9 +3,10 @@ package com.generics;
 /* Queues are FIFO (first in, first out) i.e. the first element added to the queue
  * will also be the first element to be removed */
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class GenericQueue<T> implements IQueue<T> {
+public class GenericQueue<T> implements IQueue<T>, Iterable<T> {
 
     IList<T> queueData; //via requirements
 
@@ -77,5 +78,40 @@ public class GenericQueue<T> implements IQueue<T> {
         return "GenericQueue{" +
                 "queueData=" + queueData +
                 '}';
+    }
+
+    /* Returns an iterator over the elements in this list in proper sequence.*/
+    @Override
+    public Iterator<T> iterator() {
+        return new GenericQueueIterator<>(queueData); //pass in stackData
+    }
+
+    /* Iterator class logic */
+    public class GenericQueueIterator<T> implements Iterator<T> {
+
+        IList<T> data;
+        int index = 0; // checking index
+
+        /* default constructor */
+        public GenericQueueIterator(IList<T> data) {
+            this.data = data;
+        }
+
+        /* returns true if data has elems, else false*/
+        @Override
+        public boolean hasNext() {
+            return data.size() > index; // must be greater than index
+        }
+
+        /* returns next elem in iterable - acts as loop */
+        @Override
+        public T next() {
+            if (hasNext()) {
+                return data.get(index++); // increment to get next elem via index
+            } else {
+                /* otherwise, throw index out of bounds exception */
+                throw new IndexOutOfBoundsException();
+            }
+        }
     }
 }

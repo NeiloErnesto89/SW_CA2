@@ -1,12 +1,13 @@
 package com.generics;
 
 import java.util.EmptyStackException;
+import java.util.Iterator;
 //import java.util.Iterator;
 
 /*  stack backed by 'default' generic arraylist. LIFO data structure, so we focus on the 'end' (last in)
 *  e.g. web browser <- back button 'pops' back. O(1) operation  */
 
-public class GenericStack<T> implements IStack<T> { //, Iterable<T>
+public class GenericStack<T> implements IStack<T>, Iterable<T> { //
 
     private IList<T> stackData; //via requirement notes
 //    private int top;
@@ -77,49 +78,44 @@ public class GenericStack<T> implements IStack<T> { //, Iterable<T>
     }
 
     /* Returns an iterator over the elements in this list in proper sequence.*/
-//    @Override
-//    public Iterator<T> iterator() {
-//        return new GenericStackIterator<>(stackData); //pass in stackData
-//    }
-//
-//    /* Iterator class logic */
-//    public class GenericStackIterator<T> implements Iterator<T> {
-//
-//        IList<T> data;
-//        int index = 0; // checking index
-//
-//        /* default constructor */
-//        public GenericStackIterator(IList<T> data) {
-//            this.data = data;
-//        }
-//
-////        @Override
-////        public Iterator<T> iterator() {
-////            return null;
-////        }
-//
-//        /* returns true if data has elems, else false*/
+    @Override
+    public Iterator<T> iterator() {
+        return new GenericStackIterator<>(stackData); //pass in stackData
+    }
+
+    /* Iterator class logic */
+    public class GenericStackIterator<T> implements Iterator<T> {
+
+        IList<T> data;
+        int index = 0; // checking index
+
+        /* default constructor */
+        public GenericStackIterator(IList<T> data) {
+            this.data = data;
+        }
+
 //        @Override
-//        public boolean hasNext() {
-//            return data.size() > index; // must be greater than index
-//        }
-//
-//        /* returns next elem in iterable - acts as loop */
-//        @Override
-//        public T next() {
-//            if (hasNext()) {
-//                return data.get(index++); // increment to get next elem via index
-//            } else {
-//                /* otherwise, throw index out of bounds exception */
-//                throw new IndexOutOfBoundsException();
-//            }
-//        }
-    //        public Iterator<T> iterator(data)
-//        { return new ReverseArrayIterator(); }
-//        private class ReverseArrayIterator implements Iterator<T>
-//        {
-//
-//    }
+//        public Iterator<T> iterator() {
+//            return null;
+//       }
+
+        /* returns true if data has elems, else false*/
+        @Override
+        public boolean hasNext() {
+            return data.size() > index; // must be greater than index
+        }
+
+        /* returns next elem in iterable - acts as loop */
+        @Override
+        public T next() {
+            if (hasNext()) {
+                return data.get(index++); // increment to get next elem via index
+            } else {
+                /* otherwise, throw index out of bounds exception */
+                throw new IndexOutOfBoundsException();
+            }
+        }
+    }
 }
 
 

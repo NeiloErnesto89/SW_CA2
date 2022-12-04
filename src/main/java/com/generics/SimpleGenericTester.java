@@ -1,6 +1,7 @@
 package com.generics;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class SimpleGenericTester {
@@ -13,6 +14,7 @@ public class SimpleGenericTester {
         shoppingList.add("bananas");
         shoppingList.add("carrots");
         shoppingList.add(0, "dates");
+        shoppingList.addFirst("peanuts"); //[0]
         System.out.println(shoppingList);
 
         ArrayList<Integer> moneyList = new ArrayList<>();
@@ -80,21 +82,46 @@ public class SimpleGenericTester {
 //        printList("stackList", stackList);
         System.out.println(stackList.toString()); //[30, 20, 10]
 
-//        printList("stackList", stackList);
+        /* testing stack iterator */
+        Iterator<Integer> myStackIterator = stackList.iterator();
+        while (myStackIterator.hasNext()) {
+            System.out.println("next in the stack: " + myStackIterator.next());
+        } // working iterator
 
         GenericQueue<String> queueList = new GenericQueue<>();
         System.out.println(queueList.empty());
-        queueList.enqueue("Hello");
-        queueList.enqueue("There");
+        queueList.enqueue("Hello"); queueList.enqueue("There");
         System.out.println(queueList.empty());
-        queueList.enqueue("Harold");
-        queueList.enqueue("How are you?");
+        queueList.enqueue("Harold"); queueList.enqueue("How are you?");
         System.out.println(queueList.first()); // returns current first item 'Hello'
         System.out.println(queueList.dequeue()); // removes first item in Q i.e. 'Hello'
         System.out.println(queueList.toString());
 
+        /* testing queue iterator */
+        Iterator<String> myQueueIterator = queueList.iterator();
+        int i = 0;
+        while (myQueueIterator.hasNext()) {
+            System.out.println("next in the queue: " + myQueueIterator.next() + " @ index: " + i );
+            i++;
+        } // working queue iterator
+
+
     }
 
+
+
+    /* Utilising the IList interface as a param to allows to multiply list types
+     * so, we are printing vis the interface */
+    private static <T> void printList(String listName, IList<T> listToPrint) {
+        System.out.println(listName + " contains:");
+        for(int i = 0; i < listToPrint.size(); i++)
+        {
+            System.out.print(listToPrint.get(i) + " ");
+        }
+        System.out.println();
+    }
+
+    /* Unused print list methods for sperate types of list (array and linked) */
     private static <T> void printArrayList(String listName, GenericArrayList<T> listToPrint) {
         System.out.println(listName + " contains:");
         for (int i=0; i< listToPrint.size(); i++) {
@@ -107,17 +134,6 @@ public class SimpleGenericTester {
         System.out.println(listName + " contains:");
         for (int i=0; i< listToPrint.size(); i++) {
             System.out.println(listToPrint.get(i) + " ");
-        }
-        System.out.println();
-    }
-
-    /* Utilising the IList interface as a param to allows to multiply list types
-     * so, we are printing vis the interface */
-    private static <T> void printList(String listName, IList<T> listToPrint) {
-        System.out.println(listName + " contains:");
-        for(int i = 0; i < listToPrint.size(); i++)
-        {
-            System.out.print(listToPrint.get(i) + " ");
         }
         System.out.println();
     }
