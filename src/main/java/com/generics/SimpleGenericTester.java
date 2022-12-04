@@ -53,10 +53,22 @@ public class SimpleGenericTester {
         llNumsList.add(500);
         llNumsList.remove(2); // remove 450
         System.out.println(llNumsList.toString());
+        System.out.println(llNumsList.get(2));
 //        llNumsList.getNodesIndex(200); // 2
 //        llNumsList.getNode(0); //400
         printList("llNumsList", llNumsList); // working generic tests
 
+
+        GenericStack<Integer> stackList = new GenericStack<>();
+        stackList.push(30);
+        stackList.push(20);
+        stackList.push(10);
+        stackList.push(5);
+        System.out.println("peeking: "+ stackList.peek()); // 5
+        System.out.println("popped elem: "+ stackList.pop()); //5
+        System.out.println("peeking: "+ stackList.peek()); // 10
+//        printList("stackList", stackList);
+        System.out.println(stackList.toString()); //[30, 20, 10]
 
     }
 
