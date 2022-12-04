@@ -212,10 +212,11 @@ public class GenericArrayList<T> implements IList<T> {
         return matchFound; // false
     }
 
-    /* returning correct sequencing of list iteration for elements */
+    /* returning correct sequencing of list iteration for elements
+    *  */
     @Override
     public Iterator<T> iterator() {
-        return new GenericArrayListIteratorCheck(); // add class
+        return new GenericArrayListIterator(); // add class
     }
 
     @Override
@@ -239,7 +240,7 @@ public class GenericArrayList<T> implements IList<T> {
 
     /* new for a Generic iterator, as we want to return a true bool
     * to check if .next returns an element */
-    class GenericArrayListIteratorCheck implements Iterator<T> {
+    class GenericArrayListIterator implements Iterator<T> {
 
         int pointer = 0; // elem being checked
 
@@ -257,7 +258,7 @@ public class GenericArrayList<T> implements IList<T> {
             if (!hasNext()) {
                 throw new NoSuchElementException(); // false, therefore throws
             }
-            return buffer[pointer++];
+            return buffer[pointer++]; // incremented pointer as buf index
         }
     }
 
