@@ -60,12 +60,18 @@ Here are the Junit test results over the five classes I tested:
 1. GenericArrayListTestResults
 ![GenericArrayListTestResults.png](GenericArrayListTestResults.png)
 
-
 2. GenericLinkedListTestResults
 ![GenericLinkedListTestResults.png](GenericLinkedListTestResults.png)
 
 3. GenericStackTestResults
-![GenericStackTestResults.png](GenericStackTestResults.png)
+![GenericStackTestResults2.png](GenericStackTestResults2.png)
+
+4:GenericQueueTestResults
+![GenericQueueTestResults.png](GenericQueueTestResults.png)
+
+5:PersonTestResult
+![PersonTestResult.png](PersonTestResult.png)
+
 
 
 ## Potential Improvements
