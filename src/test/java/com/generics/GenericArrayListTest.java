@@ -63,33 +63,80 @@ class GenericArrayListTest {
 
     @Test
     void get() {
+        stringGenericArrayList.add("TestOne");
+        stringGenericArrayList.add("TestTwo");
+        assertEquals("TestOne", stringGenericArrayList.get(0));
+        assertEquals("TestTwo", stringGenericArrayList.get(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> stringGenericArrayList.get(2));
+
     }
 
     @Test
     void size() {
+        for (int i = 0; i < 20; i++) {
+            assertEquals(i, integerGenericArrayList.size());
+            integerGenericArrayList.add(i);
+        }
+
     }
 
     @Test
     void remove() {
+        /* via index */
+        stringGenericArrayList.add("TestOne");
+        stringGenericArrayList.add("TestTwo");
+
+        assertEquals("TestTwo", stringGenericArrayList.remove(1));
+        assertEquals(1, stringGenericArrayList.size());
+        assertThrows(IndexOutOfBoundsException.class, () -> stringGenericArrayList.get(2));
+
     }
 
     @Test
     void testRemove() {
+        /* via element */
+        stringGenericArrayList.add("TestOne");
+        stringGenericArrayList.add("TestTwo");
+
+        assertTrue(stringGenericArrayList.remove("TestTwo"));
+        assertEquals(1, stringGenericArrayList.size());
+
     }
+
 
     @Test
     void isEmpty() {
+        assertTrue(stringGenericArrayList.isEmpty());
+        stringGenericArrayList.add("TestOne");
+        assertFalse(stringGenericArrayList.isEmpty());
+
     }
 
     @Test
     void contains() {
+        stringGenericArrayList.add("TestOne");
+        assertTrue(stringGenericArrayList.contains("TestOne"));
+        assertFalse(stringGenericArrayList.contains("TestTwo"));
+
     }
 
     @Test
     void iterator() {
+        stringGenericArrayList.add("Test0");
+        stringGenericArrayList.add("Test1");
+        stringGenericArrayList.add("Test2");
+        stringGenericArrayList.add("Test3");
+        stringGenericArrayList.add("Test4");
+
+        int i = 0;
+        for (String string: stringGenericArrayList ) {
+            assertEquals("Test"+i, string);
+            i++; // increment for loop
+        }
+
+        assertEquals(5, i); // working
+
+
     }
 
-    @Test
-    void testToString() {
-    }
 }

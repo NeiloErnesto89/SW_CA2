@@ -227,7 +227,7 @@ public class GenericLinkedList<T> implements IList<T> {
     * returns bool if it was found or not*/
     @Override
     public boolean contains(T element) {
-        System.out.println("Checking contains method with: " + element);
+//        System.out.println("Checking contains method with: " + element);
         return getNodesIndex(element) >= 0 ; // if number found, true
     }
 
@@ -239,7 +239,7 @@ public class GenericLinkedList<T> implements IList<T> {
             stringNew.append(curr.data).append(",");
             curr = curr.next;
         }
-        return stringNew.toString(); //taking into account the
+        return stringNew.toString(); //taking into account the unit tests
     }
 
 //    @Override
