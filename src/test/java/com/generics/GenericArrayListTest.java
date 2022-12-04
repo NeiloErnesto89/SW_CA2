@@ -44,6 +44,10 @@ class GenericArrayListTest {
 
     @Test
     void testAdd() {
+        stringGenericArrayList.add("try");
+        stringGenericArrayList.add("to");
+        stringGenericArrayList.add(2, "tester");
+        assertEquals("try,to,tester,", stringGenericArrayList.toString());
 
 
     }

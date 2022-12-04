@@ -220,7 +220,7 @@ public class GenericArrayList<T> implements IList<T> {
         return new GenericArrayListIterator(); // add class
     }
 
-//    @Override
+//    @Override // removed as didn't need to return extra chars
 //    public String toString()
 //    {
 //        String data = "";
@@ -234,11 +234,12 @@ public class GenericArrayList<T> implements IList<T> {
 
     @Override
     public String toString() {
+
         StringBuilder data = new StringBuilder(); //adding stringbuilder for unit tests
 
         for (int i = 0; i < nextFreeLoc; i++) {
 
-            data.append(buffer[i]).append(",");
+            data.append(buffer[i]).append(","); // append buffer @ index followed by comma
         }
         return data.toString();
     }
