@@ -64,6 +64,9 @@ Here are the Junit test results over the five classes I tested:
 2. GenericLinkedListTestResults
 ![GenericLinkedListTestResults.png](GenericLinkedListTestResults.png)
 
+3. GenericStackTestResults
+![GenericStackTestResults.png](GenericStackTestResults.png)
+
 
 ## Potential Improvements
 

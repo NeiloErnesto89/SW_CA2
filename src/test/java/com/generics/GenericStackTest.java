@@ -64,5 +64,22 @@ class GenericStackTest {
         assertFalse(stackList.empty());
     }
 
+    @Test
+    void iterator() {
+        GenericStack<Integer> stackList = new GenericStack<>();
+        stackList.push(0);
+        stackList.push(1);
+        stackList.push(2);
+
+        int i = 0;
+        for (Integer j: stackList ) {
+            assertEquals(i, j);
+            i++; // increment for loop
+        }
+
+        assertEquals(3, i); // working for num of loops
+
+    }
+
 
 }

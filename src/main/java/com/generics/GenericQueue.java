@@ -73,12 +73,23 @@ public class GenericQueue<T> implements IQueue<T>, Iterable<T> {
         return queueData.size() == 0; // same as stackData size check
     }
 
+    /* update for unit tests */
     @Override
     public String toString() {
-        return "GenericQueue{" +
-                "queueData=" + queueData +
-                '}';
+        StringBuilder string = new StringBuilder();
+        for (int i = 0; i < queueData.size(); i++) {
+            string.append(queueData.get(i)).append(","); // don't forget comma
+        }
+        return string.toString();
     }
+
+
+//    @Override
+//    public String toString() {
+//        return "GenericQueue{" +
+//                "queueData=" + queueData +
+//                '}';
+//    }
 
     /* Returns an iterator over the elements in this list in proper sequence.*/
     @Override
