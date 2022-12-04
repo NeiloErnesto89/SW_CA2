@@ -20,17 +20,17 @@ main - <code>/src/main/java/com/generics/</code> &
 test -<code>/src/test/java/com/generics/</code>.
 
 The goal of unit testing to test individual units/blocks of code (e.g. methods) within a class.
-The idea is to commit to testing early and consistently. Rerun unit tests (regression) to check for potential knock on effects.
-Mainly use pom.xml file (Maven) for adding dependencies
+The idea is to commit to testing early and consistently. Rerun unit tests are known as 
+regression to check for potential knock on effects and mainly, we use pom.xml file (Maven) for adding dependencies.
 
 #### CA2 Requirements 
 
-* Requirement 1: Constructor GenericArrayList and GenericLinkedList classes:
+* Requirement 1: Construct GenericArrayList and GenericLinkedList classes:
 The GenericArrayList and GenericLinkedList classes
 should be implemented using the given IList interface 
-* Requirement 2: GenericStack and GenericQueue Classes:
+* Requirement 2: Construct GenericStack and GenericQueue Classes:
 Classes to be implemented with the given IStack and IQueue interfaces
-* Requirement 3: JUnit tests for your classes. Use Maven in tandem with Junit (5.9.0), which is 
+* Requirement 3: JUnit tests for all your classes. Use Maven in tandem with Junit (5.9.0), which is 
 a build management tool to help us undertake our testing giving the user structure.
 
 Please refer to the diagram below to view the CA2 requirements visually:
